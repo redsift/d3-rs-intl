@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <style>
+      
+    body {
+      margin: 0px;
+    }
+
+    </style>    
+  </head>
+  <body>
+    <div id="elm"></div>
+        
+    <script src="https://d3js.org/d3.v4.0.0-alpha.49.js"></script>
+    <script src="/d3-rs-intl.umd-es2015.min.js"></script>
+    <script>
+
+    'use strict';
+
+    function units() {
+      var def = d3_rs_intl.units();
+      var fmtDef = d3.formatLocale(def).format('$.0f');
+
+      console.log(def, fmtDef(42));
+    }
+    units();
+
+    function time() {
+      var def = d3_rs_intl.time();
+      var fmtDef = d3.timeFormatLocale(def).format('%a, %B');
+
+      console.log(def, fmtDef(1));
+
+      var lang = navigator.language;
+      var nav = d3_rs_intl.time(lang);
+      console.log(lang, nav);
+
+      var rus = d3_rs_intl.time('ru_RU');
+      console.log(rus);
+    }
+    </script>
+  </body>
+</html>
