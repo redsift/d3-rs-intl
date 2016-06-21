@@ -12,5 +12,6 @@ export default function units(iso) {
         if (fmt) return { d3: fmt, iso639: key.replace('_', '-') };    
     }
     
+    // default to US english
     return { d3: lookup.en_US, iso639: 'en-US'};
 }

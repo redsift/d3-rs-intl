@@ -730,6 +730,28 @@ const isoLangsNames = {
     }
 }
 
+const search = Object.keys(isoLangsNames).map((k) => [k, isoLangsNames[k].name.toLowerCase()]);
+
+// Manual fllaback mapping from language to language_LOCALE
+const fallbacks = {
+    ca: 'ca_ES',
+    cs: 'cs_CZ',
+    en: 'en_US',
+    he: 'he_IL',
+    ja: 'ja_JP',
+    ko: 'ko_KR',
+    pt: 'pt_BR', // is this the right one?
+    sv: 'sv_SE',
+    zh: 'zh_CN'
+}
+
+export function lookup(name) {
+    let test = name.toLowerCase();
+    let res = search.find((e) => e[1].indexOf(test) > -1);
+
+    return res[0];
+}
+
 export function name(iso) {
     if (iso == null || iso.length < 2) return null;
     
@@ -750,13 +772,18 @@ export function fill(config) {
         result[k] = config[k];
     });
     
+    Object.keys(fallbacks).forEach(function(k) {
+        result[k] = config[fallbacks[k]];
+    });
+    
     return result;
 }
 
 export default function languages(iso) {
     let lang = iso;
+    
     if (lang == null) {
-        if (navigator) {
+        if (typeof navigator !== 'undefined') {
             lang = navigator.languages; // HTML 5.1 proposed
             if (lang == null) {
                 lang = [ navigator.userLanguage || navigator.language ]

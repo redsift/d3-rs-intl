@@ -31,27 +31,55 @@
       node.append('div').text(val);
     }
     
+    function nameSection(prefix, obj) {
+      return prefix + ' - ' + obj.iso639 + ' / ' + d3_rs_intl.lookupISO639(obj.iso639).name
+    }
+    
     function units() {
       var def = d3_rs_intl.units();
-      display('Default - ' + def.iso639 + ' / ' + d3_rs_intl.lookupISO639(def.iso639).name, 
+      display(nameSection('Default', def), 
               'Currency', 
               d3.formatLocale(def.d3).format('$.2f')(42.12));
+
+
+      def = d3_rs_intl.units(['no-NO', 'pl']);
+      display(nameSection('Manual fallback', def), 
+              'Currency', 
+              d3.formatLocale(def.d3).format('$.2f')(42.12));
+
+      def = d3_rs_intl.units('no-NO');
+      display(nameSection('Manual fallthrough', def), 
+              'Currency', 
+              d3.formatLocale(def.d3).format('$.2f')(42.12));
+              
+      def = d3_rs_intl.units(d3_rs_intl.lookup('Catalan'));
+      display(nameSection('Lookup', def), 
+              'Currency', 
+              d3.formatLocale(def.d3).format('$.2f')(42.12));              
+
     }
     units();
 
-    function time() {
+    // https://github.com/d3/d3-time-format#locale_format
+    function time(t) {
       var def = d3_rs_intl.time();
-      var fmtDef = d3.timeFormatLocale(def).format('%a, %B');
+      display(nameSection('Default', def), 
+              'Time', 
+              d3.timeFormatLocale(def.d3).format('%a, %B - %c')(t));      
 
-      console.log(def, fmtDef(1));
+      def = d3_rs_intl.time('no-NO');
+      display(nameSection('Manual fallthrough', def), 
+              'Time', 
+              d3.timeFormatLocale(def.d3).format('%a, %B - %c')(t));  
+    
+      def = d3_rs_intl.time(d3_rs_intl.lookup('Catalan'));
+      display(nameSection('Lookup', def), 
+              'Time', 
+              d3.timeFormatLocale(def.d3).format('%a, %B - %c')(t));  
 
-      var lang = navigator.language;
-      var nav = d3_rs_intl.time(lang);
-      console.log(lang, nav);
-
-      var rus = d3_rs_intl.time('ru_RU');
-      console.log(rus);
     }
+    
+    time(new Date());
     </script>
   </body>
 </html>

@@ -14,5 +14,6 @@ export {
 
 export {
   default as languages,
-  name as lookupISO639
+  name as lookupISO639,
+  lookup as lookup
 } from "./src/languages";

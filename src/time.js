@@ -1,4 +1,7 @@
-import * as ru_RU from 'd3-time-format/locale/ru-RU.json'
+import { default as languages, fill as fillFallbacks } from './languages.js'
+import { lookup } from './generated-lookup-time-format.js'
+
+const lookupMapping = fillFallbacks(lookup);
 
 export function intlMonths(lang, fmt) {
     if (lang === undefined) {
@@ -46,8 +49,15 @@ export function intlWeekday(lang, fmt) {
     });
 }
 
-export default function time(lang) {
+export default function time(iso) {
+    let lang = languages(iso);
 
-
-    return ru_RU;
+    for (let i = 0; i < lang.length; ++i) {
+        let key = lang[i];
+        let fmt = lookupMapping[key];
+        if (fmt) return { d3: fmt, iso639: key.replace('_', '-') };    
+    }
+    
+    // default to US english
+    return { d3: lookup.en_US, iso639: 'en-US'};
 }
