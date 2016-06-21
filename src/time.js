@@ -47,18 +47,7 @@ export function intlWeekday(lang, fmt) {
 }
 
 export default function time(lang) {
-    if (lang == null) {
-        if (navigator) {
-            lang = navigator.languages; // HTML 5.1 proposed
-            if (lang == null) {
-                lang = [ navigator.language ]
-            }
-        } else {
-            lang = [ 'en' ]
-        }
-    } else if (!Array.isArray(lang)) {
-        lang = [ lang ];
-    }
+
 
     return ru_RU;
 }

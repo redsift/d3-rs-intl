@@ -2,26 +2,40 @@
   <head>
     <style>
       
-    body {
-      margin: 0px;
-    }
+      body > div {
+        display: flex;
+        align-items: baseline;
+      }
+      
+      body > div > div {
+        margin: 1em;
+      }
 
     </style>    
   </head>
   <body>
-    <div id="elm"></div>
+
         
     <script src="https://d3js.org/d3.v4.0.0-alpha.49.js"></script>
     <script src="/d3-rs-intl.umd-es2015.min.js"></script>
     <script>
 
     'use strict';
-
+    
+    var root = d3.select('body');
+    
+    function display(heading, label, val) {
+      var node = root.append('div');
+      node.append('h4').text(heading);
+      node.append('div').text(label);
+      node.append('div').text(val);
+    }
+    
     function units() {
       var def = d3_rs_intl.units();
-      var fmtDef = d3.formatLocale(def).format('$.0f');
-
-      console.log(def, fmtDef(42));
+      display('Default - ' + def.iso639 + ' / ' + d3_rs_intl.lookupISO639(def.iso639).name, 
+              'Currency', 
+              d3.formatLocale(def.d3).format('$.2f')(42.12));
     }
     units();
 
