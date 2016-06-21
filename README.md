@@ -35,3 +35,7 @@
 The main helpers in this module are `time()` and `units()` which can optionally take an array of preferred ISO 639 `language-CULTURE` or `language` values and return the appropriate formatter. This formatter can be used by [d3-format](https://github.com/d3/d3-format#locale_format) and [d3-time-format](https://github.com/d3/d3-time-format#locale_format) to emit localized values such as decimal separators, currency and day names.
 
 If no parameters are supplied, both methods attempt to use the browser preferences.
+
+## Building
+
+As this package builds the node using imported JSON locales from d3-format and d3-time-format, you will need a JSON -> JS convesion helper in your build process if you are using a tool like Rollup, e.g. `rollup-plugin-json`.
