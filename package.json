@@ -1,6 +1,6 @@
 {
   "name": "@redsift/d3-rs-intl",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Internationalization toolkit for D3v4.",
   "keywords": [
     "bar",
@@ -25,14 +25,14 @@
     "serve": "gulp -o d3-rs-intl serve",
     "build": "gulp -o d3-rs-intl build",
     "generate": "./generate.js node_modules/d3-format/locale > src/generated-lookup-format.js && ./generate.js node_modules/d3-time-format/locale > src/generated-lookup-time-format.js",
-    "pretest": "npm outdated && npm run generate && npm run gittmp && npm run build",
+    "pretest": "npm outdated || true && npm run generate && npm run gittmp && npm run build",
     "test": "tape 'test/**/*-test.js' && eslint index.js src",
     "gittmp": "cd node_modules/d3-format && npm test",
     "prepublish": "npm run build"
   },
   "dependencies": {
     "d3-format": "^1.0.0",
-    "d3-time-format": "^1.0.0"
+    "d3-time-format": "^2.1.1"
   },
   "devDependencies": {
     "tape": "^4.6.0",
