@@ -1,19 +1,19 @@
 export {
   version
-} from "./package.json";
+} from "../package.json";
 
 
 export {
   default as time
-} from "./src/time";
+} from "./time";
 
 export {
   default as units
-} from "./src/units";
+} from "./units";
 
 
 export {
   default as languages,
   name as lookupISO639,
   lookup as lookup
-} from "./src/languages";
+} from "./languages";
