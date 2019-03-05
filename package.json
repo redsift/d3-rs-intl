@@ -1,6 +1,6 @@
 {
   "name": "@redsift/d3-rs-intl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Internationalization toolkit for D3v4.",
   "keywords": [
     "bar",
@@ -14,27 +14,33 @@
     "name": "Rahul Powar",
     "url": "https://medium.com/@rahulpowar"
   },
-  "main": "distribution/d3-rs-intl.umd-es2015.js",
-  "browser": "distribution/d3-rs-intl.umd-es2015.min.js",
-  "jsnext:main": "index.js",
+  "module": "dist/d3-rs-intl.esm.js",
+  "jsnext:main": "dist/d3-rs-intl.esm.js",
+  "main": "dist/d3-rs-intl.umd.min.js",
+  "browser": "dist/d3-rs-intl.umd.min.js",
+  "esnext": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/redsift/d3-rs-intl.git"
   },
   "scripts": {
     "serve": "gulp -o d3-rs-intl serve",
-    "build": "gulp -o d3-rs-intl build",
+    "prepublish": "npm run clean; npm run build",
+    "build": "npm run clean; node ./node_modules/@redsift/rollup-bundler/src/index.js",
+    "clean": "rm -rf dist",
     "generate": "./generate.js node_modules/d3-format/locale > src/generated-lookup-format.js && ./generate.js node_modules/d3-time-format/locale > src/generated-lookup-time-format.js",
     "pretest": "npm outdated || true && npm run generate && npm run gittmp && npm run build",
     "test": "tape 'test/**/*-test.js' && eslint index.js src",
-    "gittmp": "cd node_modules/d3-format && npm test",
-    "prepublish": "npm run build"
+    "gittmp": "cd node_modules/d3-format && npm test"
   },
   "dependencies": {
     "d3-format": "^1.0.0",
     "d3-time-format": "^2.1.1"
   },
   "devDependencies": {
+    "@redsift/rollup-bundler": "^0.3.2",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",        
     "tape": "^4.6.0",
     "browser-sync": "^2.13.0",
     "del": "^2.2.1",
