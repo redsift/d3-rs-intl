@@ -1,6 +1,6 @@
 {
   "name": "@redsift/d3-rs-intl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Internationalization toolkit for D3v4.",
   "keywords": [
     "bar",
