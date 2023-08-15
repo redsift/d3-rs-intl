@@ -32,8 +32,10 @@ import * as de_CH from 'd3-format/locale/de-CH.json'
 import * as de_DE from 'd3-format/locale/de-DE.json'
 import * as en_CA from 'd3-format/locale/en-CA.json'
 import * as en_GB from 'd3-format/locale/en-GB.json'
+import * as en_IE from 'd3-format/locale/en-IE.json'
 import * as en_IN from 'd3-format/locale/en-IN.json'
 import * as en_US from 'd3-format/locale/en-US.json'
+import * as es_BO from 'd3-format/locale/es-BO.json'
 import * as es_ES from 'd3-format/locale/es-ES.json'
 import * as es_MX from 'd3-format/locale/es-MX.json'
 import * as fi_FI from 'd3-format/locale/fi-FI.json'
@@ -88,8 +90,10 @@ export const lookup = {
 	de_DE: de_DE,
 	en_CA: en_CA,
 	en_GB: en_GB,
+	en_IE: en_IE,
 	en_IN: en_IN,
 	en_US: en_US,
+	es_BO: es_BO,
 	es_ES: es_ES,
 	es_MX: es_MX,
 	fi_FI: fi_FI,
